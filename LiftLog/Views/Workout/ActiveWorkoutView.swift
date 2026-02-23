@@ -64,7 +64,7 @@ struct ActiveWorkoutView: View {
                             .font(.headline)
                         Text(formattedTime)
                             .font(.system(.title2, design: .monospaced).weight(.bold))
-                            .foregroundStyle(.accent)
+                            .foregroundStyle(Color.accentColor)
                     }
                     Spacer()
                     Button {
@@ -74,7 +74,7 @@ struct ActiveWorkoutView: View {
                             .font(.subheadline.weight(.bold))
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
-                            .background(.accent)
+                            .background(Color.accentColor)
                             .foregroundStyle(.white)
                             .clipShape(Capsule())
                     }
@@ -114,7 +114,7 @@ struct ActiveWorkoutView: View {
                 } header: {
                     Text(entry.exercise.name)
                         .font(.subheadline.weight(.bold))
-                        .foregroundStyle(.accent)
+                        .foregroundStyle(Color.accentColor)
                 }
             }
 
@@ -166,7 +166,7 @@ struct ActiveWorkoutView: View {
 
     private func setupFromRoutine() {
         guard let routine, viewModel.exerciseEntries.isEmpty else { return }
-        for exercise in routine.exercises {
+        for exercise in routine.orderedExercises {
             viewModel.addExercise(exercise)
         }
     }

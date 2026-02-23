@@ -15,14 +15,14 @@ struct RoutineDetailView: View {
             }
 
             Section("Exercises") {
-                if routine.exercises.isEmpty {
+                if routine.orderedExercises.isEmpty {
                     ContentUnavailableView(
                         "No Exercises",
                         systemImage: "dumbbell",
                         description: Text("Add exercises to this routine.")
                     )
                 } else {
-                    ForEach(routine.exercises) { exercise in
+                    ForEach(routine.orderedExercises) { exercise in
                         HStack {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(exercise.name)
@@ -56,7 +56,7 @@ struct RoutineDetailView: View {
                 } label: {
                     Label("Start Workout", systemImage: "play.fill")
                         .font(.headline)
-                        .foregroundStyle(.accent)
+                        .foregroundStyle(Color.accentColor)
                 }
             }
         }
@@ -73,23 +73,26 @@ struct RoutineDetailView: View {
     }
 
     private func moveExercises(from source: IndexSet, to destination: Int) {
-        var exercises = routine.exercises
+        var exercises = routine.orderedExercises
         exercises.move(fromOffsets: source, toOffset: destination)
-        routine.exercises = exercises
+        routine.setExercises(exercises)
     }
 
     private func removeExercises(at offsets: IndexSet) {
-        var exercises = routine.exercises
+        var exercises = routine.orderedExercises
         exercises.remove(atOffsets: offsets)
-        routine.exercises = exercises
+        routine.setExercises(exercises)
     }
 
     private func applySelection() {
-        let existingSet = Set(routine.exercises)
-        // Add newly selected exercises
-        let newExercises = selectedExercises.subtracting(existingSet)
-        routine.exercises.append(contentsOf: newExercises)
-        // Remove deselected exercises
-        routine.exercises.removeAll { !selectedExercises.contains($0) }
+        let existing = routine.orderedExercises
+        let existingSet = Set(existing.map { $0.id })
+        // Start with existing order
+        var result = existing.filter { selectedExercises.contains($0) }
+        // Append newly selected exercises
+        for ex in selectedExercises where !existingSet.contains(ex.id) {
+            result.append(ex)
+        }
+        routine.setExercises(result)
     }
 }

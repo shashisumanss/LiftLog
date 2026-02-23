@@ -11,10 +11,24 @@ struct LiftLogApp: App {
             SetEntry.self,
         ])
         let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
         do {
             return try ModelContainer(for: schema, configurations: [config])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            // If migration fails, delete the old store and create fresh
+            let url = config.url
+            try? FileManager.default.removeItem(at: url)
+            // Also remove journal/wal files
+            let walURL = url.appendingPathExtension("wal")
+            let shmURL = url.appendingPathExtension("shm")
+            try? FileManager.default.removeItem(at: walURL)
+            try? FileManager.default.removeItem(at: shmURL)
+
+            do {
+                return try ModelContainer(for: schema, configurations: [config])
+            } catch {
+                fatalError("Could not create ModelContainer: \(error)")
+            }
         }
     }()
 

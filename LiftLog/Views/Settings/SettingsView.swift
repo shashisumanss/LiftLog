@@ -64,7 +64,7 @@ struct SettingsView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "dumbbell.fill")
                             .font(.largeTitle)
-                            .foregroundStyle(.accent)
+                            .foregroundStyle(Color.accentColor)
                         Text("LiftLog")
                             .font(.title2.weight(.bold))
                         Text("Track your lifts. Beat your PRs.")

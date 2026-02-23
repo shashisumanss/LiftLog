@@ -23,11 +23,11 @@ struct RoutinesListView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(routine.name)
                                     .font(.body.weight(.semibold))
-                                Text("\(routine.exercises.count) exercise\(routine.exercises.count == 1 ? "" : "s")")
+                                Text("\(routine.orderedExercises.count) exercise\(routine.orderedExercises.count == 1 ? "" : "s")")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                                if !routine.exercises.isEmpty {
-                                    Text(routine.exercises.prefix(3).map(\.name).joined(separator: ", "))
+                                if !routine.orderedExercises.isEmpty {
+                                    Text(routine.orderedExercises.prefix(3).map(\.name).joined(separator: ", "))
                                         .font(.caption2)
                                         .foregroundStyle(.tertiary)
                                         .lineLimit(1)

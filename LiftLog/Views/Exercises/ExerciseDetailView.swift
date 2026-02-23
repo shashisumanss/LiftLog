@@ -50,8 +50,8 @@ struct ExerciseDetailView: View {
                                         .font(.caption2.monospaced())
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 2)
-                                        .background(set.isWarmup ? .yellow.opacity(0.15) : .accent.opacity(0.1))
-                                        .foregroundStyle(set.isWarmup ? .orange : .accent)
+                                        .background(set.isWarmup ? .yellow.opacity(0.15) : Color.accentColor.opacity(0.1))
+                                        .foregroundStyle(set.isWarmup ? .orange : Color.accentColor)
                                         .clipShape(Capsule())
                                 }
                             }
@@ -75,7 +75,7 @@ struct StatCard: View {
         VStack(spacing: 6) {
             Image(systemName: icon)
                 .font(.title2)
-                .foregroundStyle(.accent)
+                .foregroundStyle(Color.accentColor)
             Text(value)
                 .font(.headline)
             Text(title)

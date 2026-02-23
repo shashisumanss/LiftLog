@@ -35,7 +35,7 @@ struct ExercisePickerView: View {
                                     Spacer()
                                     if selected.contains(exercise) {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundStyle(.accent)
+                                            .foregroundStyle(Color.accentColor)
                                     } else {
                                         Image(systemName: "circle")
                                             .foregroundStyle(.secondary)

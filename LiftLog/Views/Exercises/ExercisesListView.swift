@@ -9,7 +9,7 @@ struct ExercisesListView: View {
     @State private var newExerciseName = ""
     @State private var newExerciseCategory = "Chest"
 
-    private let categories = ["Chest", "Back", "Legs", "Shoulders", "Arms", "Core"]
+    private let categories = ["Chest", "Back", "Legs", "Shoulders", "Arms", "Core", "Cardio", "Olympic"]
 
     private var filtered: [Exercise] {
         if searchText.isEmpty { return exercises }
@@ -47,8 +47,8 @@ struct ExercisesListView: View {
                                             .font(.caption2)
                                             .padding(.horizontal, 6)
                                             .padding(.vertical, 2)
-                                            .background(.accent.opacity(0.15))
-                                            .foregroundStyle(.accent)
+                                            .background(Color.accentColor.opacity(0.15))
+                                            .foregroundStyle(Color.accentColor)
                                             .clipShape(Capsule())
                                     }
                                 }
@@ -60,7 +60,7 @@ struct ExercisesListView: View {
                     } header: {
                         HStack(spacing: 6) {
                             Image(systemName: iconForCategory(category))
-                                .foregroundStyle(.accent)
+                                .foregroundStyle(Color.accentColor)
                             Text(category)
                         }
                     }
@@ -151,6 +151,8 @@ struct ExercisesListView: View {
         case "Shoulders": return "figure.arms.open"
         case "Arms": return "dumbbell"
         case "Core": return "figure.core.training"
+        case "Cardio": return "figure.run"
+        case "Olympic": return "figure.highintensity.intervaltraining"
         default: return "figure.mixed.cardio"
         }
     }

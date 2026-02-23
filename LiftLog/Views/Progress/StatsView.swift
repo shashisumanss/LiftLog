@@ -104,7 +104,7 @@ struct StatsView: View {
                                             Spacer()
                                             Text("\(Int(record.weight)) \(weightUnit)")
                                                 .font(.subheadline.weight(.bold).monospacedDigit())
-                                                .foregroundStyle(.accent)
+                                                .foregroundStyle(Color.accentColor)
                                             Image(systemName: "chevron.right")
                                                 .font(.caption)
                                                 .foregroundStyle(.tertiary)

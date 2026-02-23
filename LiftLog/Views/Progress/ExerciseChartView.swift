@@ -76,13 +76,13 @@ struct ExerciseChartView: View {
                                 y: .value("Weight", point.maxWeight)
                             )
                             .interpolationMethod(.catmullRom)
-                            .foregroundStyle(.accent)
+                            .foregroundStyle(Color.accentColor)
 
                             PointMark(
                                 x: .value("Date", point.date),
                                 y: .value("Weight", point.maxWeight)
                             )
-                            .foregroundStyle(.accent)
+                            .foregroundStyle(Color.accentColor)
                             .symbolSize(40)
 
                             AreaMark(
@@ -90,7 +90,7 @@ struct ExerciseChartView: View {
                                 y: .value("Weight", point.maxWeight)
                             )
                             .interpolationMethod(.catmullRom)
-                            .foregroundStyle(.accent.opacity(0.1))
+                            .foregroundStyle(Color.accentColor.opacity(0.1))
                         }
                         .chartYAxisLabel(weightUnit)
                         .frame(height: 200)
@@ -108,7 +108,7 @@ struct ExerciseChartView: View {
                                 x: .value("Date", point.date),
                                 y: .value("Volume", point.volume)
                             )
-                            .foregroundStyle(.accent.gradient)
+                            .foregroundStyle(Color.accentColor.gradient)
                             .cornerRadius(4)
                         }
                         .chartYAxisLabel(weightUnit)

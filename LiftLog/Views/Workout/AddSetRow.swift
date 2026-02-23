@@ -16,8 +16,8 @@ struct AddSetRow: View {
             Text("\(setNumber)")
                 .font(.caption.weight(.bold))
                 .frame(width: 24, height: 24)
-                .background(isWarmup ? .yellow.opacity(0.2) : .accent.opacity(0.15))
-                .foregroundStyle(isWarmup ? .orange : .accent)
+                .background(isWarmup ? .yellow.opacity(0.2) : Color.accentColor.opacity(0.15))
+                .foregroundStyle(isWarmup ? .orange : Color.accentColor)
                 .clipShape(Circle())
 
             // Weight
@@ -50,7 +50,7 @@ struct AddSetRow: View {
             } label: {
                 Image(systemName: isWarmup ? "flame.fill" : "flame")
                     .font(.caption)
-                    .foregroundStyle(isWarmup ? .orange : .quaternary)
+                    .foregroundStyle(isWarmup ? Color.orange : Color.gray.opacity(0.3))
             }
             .buttonStyle(.plain)
 
@@ -65,7 +65,7 @@ struct AddSetRow: View {
             } label: {
                 Image(systemName: isCompleted ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
-                    .foregroundStyle(isCompleted ? .green : .quaternary)
+                    .foregroundStyle(isCompleted ? Color.green : Color.gray.opacity(0.3))
             }
             .buttonStyle(.plain)
             .disabled(isCompleted)
